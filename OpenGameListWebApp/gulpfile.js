@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     gp_uglify = require('gulp-uglify');
 /// Define paths
 var srcPaths = {
-    app: ['Scripts/app/main.ts', 'Scripts/app/**/*.ts'],
+    app: ['Scripts/app/main.ts', 'Scripts/app/**/*.ts'], 
     js: [
         'Scripts/js/**/*.js',
         'node_modules/core-js/client/shim.min.js',
@@ -40,7 +40,7 @@ gulp.task('app', ['app_clean'], function () {
     return gulp.src(srcPaths.app)
         .pipe(gp_sourcemaps.init())
         .pipe(gp_typescript(require('./tsconfig.json').compilerOptions))
-        .pipe(gp_uglify({ mangle: false }))
+        //.pipe(gp_uglify({ mangle: false }))
         .pipe(gp_sourcemaps.write('/'))
         .pipe(gulp.dest(destPaths.app));
 });
@@ -56,8 +56,8 @@ gulp.task('js', function () {
     gulp.src(srcPaths.js_rxjs)
         .pipe(gulp.dest(destPaths.js_rxjs));
     return gulp.src(srcPaths.js)
-        .pipe(gp_uglify({ mangle: false })) // disable uglify
-        .pipe(gp_concat('all-js.min.js')) // disable concat
+        //.pipe(gp_uglify({ mangle: false })) // disable uglify
+        //.pipe(gp_concat('all-js.min.js')) // disable concat
         .pipe(gulp.dest(destPaths.js));
 });
 // Delete wwwroot/js contents
